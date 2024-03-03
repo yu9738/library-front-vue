@@ -1,18 +1,33 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="mg">
+    <SearchBar/>
   </div>
+
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import SearchBar from "@/components/Search-bar";
 
 export default {
-  name: 'HomeView',
+  data() {
+
+  },
+  // methods: {
+  //   goToBookSearch() {
+  //     this.$router.push({ name: 'books', query: { keyword: this.searchTerm } });
+  //   },
+  // },
   components: {
-    HelloWorld
+    SearchBar,
   }
-}
+};
 </script>
+<style scoped>
+
+#mg {
+  padding-top: 10vh;
+  padding-bottom: 30vh;
+  //background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://www.tukorea.ac.kr/sites/tukorea/atchmnfl/bbs/134/temp_1697541487841100.tmp");
+  //background-size: cover;
+}
+</style>

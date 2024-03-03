@@ -1,18 +1,36 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+  <div>
+    <Header/>
+  </div>
   <router-view/>
+  <Footer/>
+
 </template>
 
+<script>
+import Header from "@/components/Header.vue";
+import {defineComponent} from "vue";
+import Footer from "@/components/Footer.vue";
+
+export default {
+  name: "app",
+  components: {
+    Footer, // 가져온 component 들을 등록합니다.
+    Header,
+  }
+};
+
+</script>
 <style>
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
 }
 
 nav {
