@@ -39,7 +39,7 @@ export default {
         <span class="fs-4">한공대 도서관</span>
       </a>
       <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+<!--        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">-->
       </form>
     </div>
   </header>
