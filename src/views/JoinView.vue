@@ -14,7 +14,8 @@
         </div>
         <input type="text" class="form-control item" id="username" placeholder="Username" v-model="joinData.username">
         <div v-if="isCheck">
-          <div class="mx-3 text-danger " v-if="checkId">중복된 아이디 입니다 </div>
+          <div class="mx-3 text-danger
+" v-if="checkId">중복된 아이디 입니다 </div>
           <div class="mx-3 text-success " v-if="!checkId">사용 가능한 아이디 입니다 </div>
         </div>
         <div class="mx-3 text-danger " v-if="nullState.username">아이디를 입력해 주세요 </div>
