@@ -45,7 +45,7 @@ data(){
     login() {
       let saveData ={};
       saveData.userName =this.loginData.username
-      axios.post("http://localhost:8080/members/login",this.loginData).then(response => {
+      axios.post("http://3.37.88.70/members/login",this.loginData).then(response => {
         console.log(response.data);
         if (response.data.grantType == null) {
           this.loginState = true;

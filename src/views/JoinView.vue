@@ -43,7 +43,7 @@
       <div class="form-group">
         <div class="mx-3 mb-2">생년월일 (8글자 예시 : 19990921)</div>
         <input type="number" v-model="joinData.birthday" class="form-control item" id="birth-date" placeholder="Birth Date">
-        <div class="mx-3 text-danger"v-if="nullState.birthday" >생년월일을 입력해 주세요 </div>
+        <div class="mx-3 text-danger" v-if="nullState.birthday" >생년월일을 입력해 주세요 </div>
       </div>
       <div class="form-group">
         <div class="mx-3 mb-2">성별</div>
@@ -225,7 +225,7 @@ body{
   border-bottom-right-radius: 30px;
   color: #9fadca;
   border-top: 1px solid #dee9ff;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.075);
 }
 
 .registration-form .social-icons{
