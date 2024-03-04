@@ -44,7 +44,7 @@ export default {
   created() {
     let keyword = this.$route.query.keyword;
     console.log(keyword)
-    axios.get('http://localhost:8080/search-book',{
+    axios.get('http://3.37.88.70:8080/search-book',{
       params: {
         keyword: keyword
       }
