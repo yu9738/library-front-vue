@@ -73,18 +73,23 @@ export default {
     // },
     goToBookSearch() {
       let keyword = this.searchTerm;
-      console.log(keyword)
-      axios.get('http://3.37.88.70:8080/search-book',{
-        params: {
-          keyword: keyword
-        }
-      })
-          .then(response => {
-            console.log(response.data)
-            this.books = response.data
-          }).catch(error => {
-        console.error(error);
-      });
+      if(keyword.length<=1){
+        alert("두글자 이상 입력해 주세요");
+      }else{
+        console.log(keyword)
+        axios.get('http://3.37.88.70:8080/search-book',{
+          params: {
+            keyword: keyword
+          }
+        })
+            .then(response => {
+              console.log(response.data)
+              this.books = response.data
+            }).catch(error => {
+          console.error(error);
+        });
+      }
+
     },
   },
 
