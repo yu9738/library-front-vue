@@ -11,7 +11,7 @@ export default {
   created() {
     let id = this.$route.query.id;
     console.log(id)
-    axios.get('http://3.37.88.70:8080/book',{
+    axios.get('http://3.39.239.157:8080/book',{
       params: {
         id: id
       }

@@ -27,7 +27,7 @@
 import axios from "axios";
 export default {
   created() {
-    axios.get('http://3.37.88.70:8080/member/info',{
+    axios.get('http://3.39.239.157:8080/member/info',{
       params: {
         username: this.$store.state.userName
       }
@@ -48,7 +48,7 @@ data(){
     login() {
       let saveData ={};
       saveData.userName =this.loginData.username
-      axios.post("http://3.37.88.70:8080/members/login",this.loginData).then(response => {
+      axios.post("http://3.39.239.157:8080/members/login",this.loginData).then(response => {
         console.log(response.data);
         if (response.data.grantType == null) {
           this.loginState = true;

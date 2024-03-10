@@ -104,7 +104,7 @@ data(){
   methods: {
     join() {
       if (!this.nullCheck()) {
-        axios.post("http://3.37.88.70:8080/join", this.joinData).then(response => {
+        axios.post("http://3.39.239.157:8080/join", this.joinData).then(response => {
           console.log(response.data);
           alert("회원가입이 완료되었습니다.");
           this.$router.push({
@@ -117,7 +117,7 @@ data(){
 
     },
     isDuplicateId() {
-      axios.get("http://3.37.88.70:8080/member/duplicate", {
+      axios.get("http://3.39.239.157:8080/member/duplicate", {
         params: {
           username: this.joinData.username
         }
