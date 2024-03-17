@@ -17,17 +17,20 @@
         <div  class="d-flex flex-column flex-lg-row gap-4  align-items-lg-center  py-3 link-body-emphasis text-decoration-none border-top"  id="aa" >
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPh-7xlw_yAL_fV1-9robkTTnDGPzH5JIIA2H1AJhoRWX66GyjTqIdapMhoLezrPHoOmU&usqp=CAU" alt="...">
 
-          <div class="">
+          <div class="te">
             <h5>
-              <router-link :to="{name: 'bookDetail',query:{id: book.id}}" class="link-body-emphasis text-decoration-none" @click="$store.commit('setBookData', book)">{{book.title}}</router-link>
+              <router-link :to="{name: 'bookDetail',query:{id: book.id,isbn:book.isbn.trim(),callNumber:book.callNumber.trim()}}" class="link-body-emphasis text-decoration-none" @click="$store.commit('setBookData', book)">{{book.title}}</router-link>
             </h5>
-            <h6 class="text-body-secondary">{{book.author}}</h6>
+            <h6 class="text-body-secondary">저자 : {{book.author}}</h6>
             <h6 class="text-body-secondary">출판사 : {{book.publisher}}</h6>
             <h6 class="text-body-secondary">page : {{book.page}}</h6>
             <h6 class="text-body-secondary">ISBN : {{book.isbn}}</h6>
             <h6 class="text-body-secondary">장르 : {{book.genre}}</h6>
             <h6 class="text-body-secondary">출판년도 : {{book.publicationYear}}</h6>
             <h6 class="text-body-secondary">청구기호 : {{book.callNumber}}</h6>
+            <h5 class="text-warning-emphasis" v-if="book.lendStatus === 'F'">대출중</h5>
+            <h5 class="text-warning-emphasis" v-else>대출 가능</h5>
+
 
           </div>
         </div>
@@ -91,6 +94,7 @@ export default {
       }
 
     },
+
   },
 
 }

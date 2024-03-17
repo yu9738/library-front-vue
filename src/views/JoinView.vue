@@ -114,7 +114,6 @@ data(){
           console.error(error);
         });
       }
-
     },
     isDuplicateId() {
       axios.get("http://3.39.239.157:8080/member/duplicate", {

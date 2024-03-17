@@ -13,9 +13,6 @@
             <h6 class="text-body-secondary">핸드폰번호 : {{memberInfo.phoneNumber}}</h6>
             <h6 class="text-body-secondary">생년월일 : {{memberInfo.birthday}}</h6>
 
-
-
-
           </div>
         </div>
       </li>
