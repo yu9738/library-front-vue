@@ -11,11 +11,11 @@
     </div>
   </div>
 
-  <div class="d-flex"   v-for="book in books" key="book.id" id="div_main">
+  <div class="d-flex"   v-for="(book,i) in books" key="book.id" id="div_main">
     <ul class="list-unstyled">
       <li class="">
         <div  class="d-flex flex-column flex-lg-row gap-4  align-items-lg-center  py-3 link-body-emphasis text-decoration-none border-top"  id="aa" >
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPh-7xlw_yAL_fV1-9robkTTnDGPzH5JIIA2H1AJhoRWX66GyjTqIdapMhoLezrPHoOmU&usqp=CAU" alt="...">
+          <img  v-bind:src="imgURL[i]" onerror="this.onerror=null; this.src= 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPh-7xlw_yAL_fV1-9robkTTnDGPzH5JIIA2H1AJhoRWX66GyjTqIdapMhoLezrPHoOmU&usqp=CAU'" id="bookURL">
 
           <div class="te">
             <h5>
@@ -37,6 +37,21 @@
       </li>
     </ul>
   </div>
+  <ul class="pagination justify-content-center pagination-lg">
+    <li class="page-item">
+      <button class="page-link" @click="previousPage"  aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </button>
+    </li>
+    <li class="page-item" v-for="index in this.totalPage" :key="index" v-show="index > this.pageList && index<=(this.pageList+10) ">
+      <button class="page-link" @click="bookPageSearch(index)">{{index}}</button></li>
+    <li class="page-item">
+      <button class="page-link" @click="nextPage" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </button>
+    </li>
+  </ul>
+
 </template>
 <script>
 import axios from "axios";
@@ -45,27 +60,23 @@ import SearchBar from "@/components/Search-bar";
 export default {
 
   created() {
-    let keyword = this.$route.query.keyword;
-    console.log(keyword)
-    axios.get('http://3.39.239.157:8080/search-book',{
-      params: {
-        keyword: keyword
-      }
-    })
-        .then(response => {
-          console.log(response.data)
-          this.books = response.data
-        }).catch(error => {
-      console.error(error);
-    });
+    this.createBookSearch();
   },
 
   data() {
     return {
       books: [],
       searchTerm: '',
-
+      page:0,
+      totalPage :0,
+      pageList:0,
+      imgURL : [],
     }
+  },
+  computed(){
+    // filteredPages(){
+    //     return this.totalPage>10 ? Array.from({length:10},)
+    // }
   },
   components: {
     SearchBar,
@@ -74,6 +85,26 @@ export default {
     // goToDetail() {
     //   this.$router.push({ name: 'bookDetail',query:{id: book.id}})
     // },
+    createBookSearch(){
+      let keyword = this.$route.query.keyword;
+      console.log(keyword)
+      axios.get('http://3.39.239.157:8080/search-book',{
+        params: {
+          keyword: keyword,
+          page : this.page,
+          size : 10,
+        }
+      })
+          .then(response => {
+            console.log(response.data)
+            this.books = response.data.books.content;
+            this.totalPage = response.data.books.totalPages;
+            this.imgURL = response.data.imgURLList;
+
+          }).catch(error => {
+        console.error(error);
+      });
+    },
     goToBookSearch() {
       let keyword = this.searchTerm;
       if(keyword.length<=1){
@@ -82,17 +113,40 @@ export default {
         console.log(keyword)
         axios.get('http://3.39.239.157:8080/search-book',{
           params: {
-            keyword: keyword
+            keyword: keyword,
+            page : this.page,
+            size : 10,
           }
         })
             .then(response => {
               console.log(response.data)
-              this.books = response.data
+              this.books = response.data.books.content;
+              this.totalPage = response.data.books.totalPages;
+              this.imgURL = response.data.imgURLList;
+
             }).catch(error => {
           console.error(error);
         });
+        this.$router.push({
+          // name: 'books',
+          query: { keyword: this.searchTerm },
+
+        });
       }
 
+    },
+    previousPage(){
+      if(this.pageList !== 0)
+        this.pageList = this.pageList -10
+    },
+    nextPage(){
+      if((this.pageList+10) < this.totalPage)
+        this.pageList = this.pageList +10
+    },
+    bookPageSearch(index) {
+      this.page = index -1;
+      let keyword = this.$route.query.keyword;
+      this.createBookSearch();
     },
 
   },
@@ -111,5 +165,8 @@ export default {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-
+#bookURL{
+  max-width: 300px;
+  max-height: 300px;
+}
 </style>
