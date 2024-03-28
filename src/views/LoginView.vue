@@ -47,11 +47,11 @@ data(){
       saveData.userName =this.loginData.username
         axios.post("http://3.39.239.157:8080/members/login",this.loginData).then(response => {
         console.log(response.data);
-        if (response.data.grantType == null) {
+        if (response.data.jwtToken.grantType == null) {
           this.loginState = true;
         } else {
-          saveData.token = response.data.accessToken
-
+          saveData.token = response.data.jwtToken.accessToken;
+          saveData.role = response.data.role
           this.$store.commit("loginSuccess",saveData)
           this.$router.push({
             name:'home'

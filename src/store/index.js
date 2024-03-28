@@ -5,7 +5,7 @@ export default createStore({
     isLogin: false,
     userName: '',
     token: '',
-
+    role:'',
   },
   getters: {
 
@@ -15,9 +15,14 @@ export default createStore({
       state.isLogin = true
       state.userName = payload.userName
       state.token = payload.token
+      state.role = payload.role
     },
     logout(state) {
-      state.isLogin = false
+      state.isLogin = false;
+      state.userName='';
+      state.token='';
+      state.role='';
+
       localStorage.removeItem("access_token")
     },
     loginCheck: function (state) {
