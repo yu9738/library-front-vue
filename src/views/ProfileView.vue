@@ -46,7 +46,7 @@
 import axios from "axios";
 export default {
   created() {
-    axios.get('http://3.39.239.157:8080/member/info',{
+    axios.get('http://52.79.204.104:8080/member/info',{
       params: {
         username: this.username
       }
@@ -57,7 +57,7 @@ export default {
         }).catch(error => {
       console.error(error);
     });
-    axios.get('http://3.39.239.157:8080/member/lend',{
+    axios.get('http://52.79.204.104:8080/member/lend',{
       params: {
         username: this.username
       }
@@ -83,7 +83,7 @@ data(){
     login() {
       let saveData ={};
       saveData.userName =this.loginData.username
-      axios.post("http://3.39.239.157:8080/members/login",this.loginData).then(response => {
+      axios.post("http://52.79.204.104:8080/members/login",this.loginData).then(response => {
         console.log(response.data);
         if (response.data.grantType == null) {
           this.loginState = true;

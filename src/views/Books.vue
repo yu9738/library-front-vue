@@ -88,7 +88,7 @@ export default {
     createBookSearch(){
       let keyword = this.$route.query.keyword;
       console.log(keyword)
-      axios.get('http://3.39.239.157:8080/search-book',{
+      axios.get('http://52.79.204.104:8080/search-book',{
         params: {
           keyword: keyword,
           page : this.page,
@@ -111,7 +111,7 @@ export default {
         alert("두글자 이상 입력해 주세요");
       }else{
         console.log(keyword)
-        axios.get('http://3.39.239.157:8080/search-book',{
+        axios.get('http://52.79.204.104:8080/search-book',{
           params: {
             keyword: keyword,
             page : this.page,

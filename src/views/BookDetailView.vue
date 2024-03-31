@@ -43,7 +43,7 @@ export default {
     let id = this.$route.query.id;
     let isbn = this.$route.query.isbn;
     console.log(id)
-    axios.get('http://3.39.239.157:8080/book',{
+    axios.get('http://52.79.204.104:8080/book',{
       params: {
         id: id
       }
@@ -54,7 +54,7 @@ export default {
         }).catch(error => {
       console.error(error);
     });
-    axios.get('http://3.39.239.157:8080/book/detail',{
+    axios.get('http://52.79.204.104:8080/book/detail',{
       params: {
         isbn: isbn
       }
