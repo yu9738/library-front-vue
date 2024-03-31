@@ -26,8 +26,8 @@
 <script>
 import axios from "axios";
 export default {
-  created() {
-    axios.get('http://localhost:8080/book/displaced-book',{
+  created() { // http://3.39.239.157:8080/
+    axios.get('http://3.39.239.157:8080//book/displaced-book',{
 
     })
         .then(response => {
