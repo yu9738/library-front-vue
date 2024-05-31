@@ -19,6 +19,7 @@
           <div class="mx-3 text-success " v-if="!checkId">사용 가능한 아이디 입니다 </div>
         </div>
         <div class="mx-3 text-danger " v-if="nullState.username">아이디를 입력해 주세요 </div>
+        <div class="mx-3 text-danger " v-if="checkDuplicatedId">아이디 중복체크를 해주세요. </div>
       </div>
       <div class="form-group has-success">
         <div class="mx-3 mb-2">비밀번호</div>
@@ -87,6 +88,7 @@ data(){
       phoneNumber: '',
       gender: '',
       birthday: '',
+      role:'user'
     },
     nullState:{
       username: false,
@@ -96,14 +98,19 @@ data(){
       phoneNumber: false,
       gender: false,
       birthday: false,
-    }
-
+    },
+    checkDuplicatedId : false
 
   }
 },
   methods: {
     join() {
+      if(!this.isCheck){
+        this.checkDuplicatedId = true
+        return ;
+      }
       if (!this.nullCheck()) {
+
         axios.post("http://52.79.204.104:8080/join", this.joinData).then(response => {
           console.log(response.data);
           alert("회원가입이 완료되었습니다.");
@@ -116,17 +123,21 @@ data(){
       }
     },
     isDuplicateId() {
-      axios.get("http://52.79.204.104:8080/member/duplicate", {
-        params: {
-          username: this.joinData.username
-        }
-      }).then(response => {
-        console.log(response.data);
-        this.checkId = !response.data;
-        this.isCheck = true;
-      }).catch(error => {
-        console.error(error);
-      });
+      if(this.joinData.username){
+        axios.get("http://52.79.204.104:8080/member/duplicate", {
+          params: {
+            username: this.joinData.username
+          }
+        }).then(response => {
+          console.log(response.data);
+          this.checkId = !response.data;
+          this.isCheck = true;
+
+        }).catch(error => {
+          console.error(error);
+        });
+      }
+      else this.nullState.username = true;
     },
     nullCheck() {
       let isnull=false;

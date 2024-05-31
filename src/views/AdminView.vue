@@ -9,18 +9,30 @@
       <th scope="col">ISBN</th>
       <th scope="col">청구기호</th>
       <th scope="col">출판사</th>
+      <th scope="col">잘못 놓인 위치</th>
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(book , index) in bookList">
-      <th scope="row">{{index+1}}</th>
-      <td>{{book.title}}</td>
-      <td>{{book.isbn}}</td>
-      <td>{{book.callNumber}}</td>
-      <td>{{book.publisher}}</td>
-    </tr>
+    <template v-for="(book, index) in bookList">
+      <tr @click="toggleDetail(index)">
+        <th scope="row">{{ index+1 }}</th>
+        <td>{{ book.title }}</td>
+        <td>{{ book.isbn }}</td>
+        <td>{{ book.callNumber }}</td>
+        <td>{{ book.publisher }}</td>
+      </tr>
+      <tr v-if="activeIndex === index" :key="'details-' + book.isbn">
+        <td colspan="5">
+          <img src="/qq.jpg" alt="" width="700" height="500">
+
+        </td>
+      </tr>
+    </template>
     </tbody>
+
   </table>
+
+
 </template>
 
 <script>
@@ -43,10 +55,14 @@ export default {
 data(){
   return{
     bookList :[],
+    activeIndex: -1,
   }
 },
   methods:{
-
+    toggleDetail(index) {
+      // 이미 활성화된 행을 다시 클릭하면 닫히도록 설정
+      this.activeIndex = this.activeIndex === index ? -1 : index;
+    },
   }
 }
 </script>

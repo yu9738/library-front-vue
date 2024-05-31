@@ -147,6 +147,7 @@ export default {
       this.page = index -1;
       let keyword = this.$route.query.keyword;
       this.createBookSearch();
+      window.scroll({top: 0, left: 0, behavior: 'smooth'});
     },
 
   },

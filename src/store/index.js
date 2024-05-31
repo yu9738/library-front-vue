@@ -4,6 +4,7 @@ export default createStore({
   state: {
     isLogin: false,
     userName: '',
+    userId: '',
     token: '',
     role:'',
   },
@@ -16,6 +17,7 @@ export default createStore({
       state.userName = payload.userName
       state.token = payload.token
       state.role = payload.role
+      state.userId = payload.userId
     },
     logout(state) {
       state.isLogin = false;

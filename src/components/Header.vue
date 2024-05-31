@@ -48,6 +48,10 @@ export default {
       <div class=" col-lg-auto mb-3 mb-lg-0  me-5 " v-if="this.$store.state.role==='admin'" >
             <router-link to="/admin" class="nav-link link-body-emphasis px-2 fs-5 " id="admin">관리자 페이지</router-link>
       </div>
+        <div class=" col-lg-auto mb-3 mb-lg-0  me-5 " v-if="this.$store.state.role==='user'" >
+          <router-link to="/recommend" class="nav-link link-body-emphasis px-2 fs-5 " id="admin">책 추천</router-link>
+        </div>
+
       </router-link>
     </div>
   </header>

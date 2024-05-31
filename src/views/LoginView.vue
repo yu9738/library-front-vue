@@ -52,6 +52,7 @@ data(){
         } else {
           saveData.token = response.data.jwtToken.accessToken;
           saveData.role = response.data.role
+          saveData.userId = response.data.id
           this.$store.commit("loginSuccess",saveData)
           this.$router.push({
             name:'home'
