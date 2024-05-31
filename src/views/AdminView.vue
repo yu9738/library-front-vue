@@ -23,8 +23,7 @@
       </tr>
       <tr v-if="activeIndex === index" :key="'details-' + book.isbn">
         <td colspan="5">
-          <img src="/qq.jpg" alt="" width="700" height="500">
-
+          <img :src="'/home/ubuntu/library/bookImg/book' + book.id + '.jpg'" :alt="book.title" />
         </td>
       </tr>
     </template>
