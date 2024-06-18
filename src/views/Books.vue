@@ -19,7 +19,7 @@
 
           <div class="te">
             <h5>
-              <router-link :to="{name: 'bookDetail',query:{id: book.id,isbn:book.isbn.trim(),callNumber:book.callNumber.trim()}}" class="link-body-emphasis text-decoration-none" @click="$store.commit('setBookData', book)">{{book.title}}</router-link>
+              <router-link :to="{name: 'bookDetail',query:{id: book.id,isbn:book.isbn.trim(),callNumber:book.callNumber.trim(),x:book.x,y:book.y}}" class="link-body-emphasis text-decoration-none" @click="$store.commit('setBookData', book)">{{book.title}}</router-link>
             </h5>
             <h6 class="text-body-secondary">저자 : {{book.author}}</h6>
             <h6 class="text-body-secondary">출판사 : {{book.publisher}}</h6>
