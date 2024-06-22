@@ -22,8 +22,8 @@
         <td>{{ book.publisher }}</td>
       </tr>
       <tr v-if="activeIndex === index" :key="'details-' + book.isbn">
-        <td colspan="5">
-          <img :src="'/home/ubuntu/library/bookImg/book' + book.id + '.jpg'" :alt="book.title" />
+        <td colspan="5" class="responsive-container">
+          <img :src="'/images/book' + book.bookId + '.jpg'" :alt="book.title" class="responsive-image" />
         </td>
       </tr>
     </template>
@@ -80,4 +80,13 @@ data(){
     margin-right: 10vw ;
     max-width: 80vw;
   }
+.responsive-container {
+  max-width: 100%; /* 부모 요소의 최대 너비를 화면 크기에 맞춥니다. */
+  overflow: hidden;
+}
+
+.responsive-image {
+  width: 100%; /* 부모 요소의 너비에 맞춰 이미지를 조정합니다. */
+  height: auto; /* 이미지 비율을 유지합니다. */
+}
 </style>
